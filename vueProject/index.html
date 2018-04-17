@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>VueJS|Dola29</title>
+
+        <!-- Bootstrap CSS -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.3/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <div id="appVue">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h1 v-if="lists.length > 0">Agregar una tarea</h1>
+                        <h1 v-else="lists">Crear una tarea</h1>
+                        <input type="text" class="form-control" v-model="newKeep" v-on:keyup.enter="addKeep">
+                    </div>
+                    <div class="col-sm-6">
+                        <h1 v-if="lists.length > 0">Listado tareas</h1>
+                        <h1 v-else="lists">No hay tareas registradas</h1>
+                        <ul class="list-group">
+                        <li class="list-group-item"
+                            v-for="item in lists"
+                            v-bind:class="item.completed == true ? 'disabled':''"
+                            @click="item.completed = !item.completed">
+                            {{item.keep}}
+
+                        </li>                         
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-ms-12">
+                        <hr>
+                        <pre>
+                            {{$data | Json}}
+                        </pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="asset/vue.min.js"></script>
+        <script src="asset/script.js"></script>
+    </body>
+</html>
